@@ -1,0 +1,80 @@
+body {
+  margin: 0% 15%;
+}
+
+.App {
+  height: 120vh;
+  /* background-image: url('./assets/hot-weather.jpg'); */
+  background-position: center;
+  padding: 0% 17%;
+}
+
+.inputData {
+  display: flex;
+  justify-content: center;
+  padding: 1% 3%;
+  margin-bottom: 15%;
+  background-color: #2e2828;
+  opacity: .8;
+}
+
+.inputData input {
+  outline: none;
+  border: 1px solid white;
+  padding: 1%;
+  background-color: transparent;
+  color:white;
+  border-radius: 6px;
+}
+
+.tempData {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2e2828;
+  color:white;
+  padding: 2% 3%;
+  opacity: .8;
+  text-transform: capitalize;
+  margin-bottom: 5%;
+  text-align: center;
+}
+
+.tempData h1 {
+  font-size: 2.1rem;
+}
+
+.tempData > h2,h3 {
+  font-size: 1.1rem;
+}
+
+.otherData {
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+  background-color: #2e2828;
+  color:white;
+  padding: 1% 1%;
+  opacity: .8;
+  text-transform: capitalize;
+  margin-bottom: 5%;
+}
+
+.data h2 {
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+  margin: 1%;
+}
+
+.data p {
+  margin: 0;
+  font-size: 1.2rem;
+}
