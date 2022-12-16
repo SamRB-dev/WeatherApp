@@ -2,7 +2,12 @@ import "./App.css";
 import React, { useEffect, useState } from "react";
 import hotbg from "./assets/hot-weather.jpg";
 import coldbg from "./assets/cold-weather.jpg";
-import { MdOutlineInfo,MdArrowCircleUp, MdArrowCircleDown, MdCompress} from "react-icons/md";
+import {
+  MdOutlineInfo,
+  MdArrowCircleUp,
+  MdArrowCircleDown,
+  MdCompress,
+} from "react-icons/md";
 import { WiHumidity } from "react-icons/wi";
 
 // API Key
@@ -21,36 +26,40 @@ async function getWeather(city, units = "metric") {
 
 function App() {
   const [useData, setData] = useState(null);
-  const [city,setCity] = useState('berlin');
+  const [city, setCity] = useState("berlin");
   const [bg, setBg] = useState(hotbg);
 
-  // calling getWeather()
-  const fetchData = async () => {
-    const data = await getWeather(city);
-    console.log(data);
-    setData(data);
-    if (data.main.temp < 21){
-      setBg(coldbg);
-    } else {
-      setBg(hotbg);
+  // Handling Keypress in search bar
+  const getCity = (event) => {
+    if (event.keyCode === 13) {
+      setCity(event.currentTarget.value);
     }
   };
 
-  const getCity = (event) => {
-    if (event.keyCode === 13){
-      setCity(event.currentTarget.value);
-    }
-  }
-
-  useEffect(function () {
-    fetchData();
-  }, [city,fetchData]);
+  useEffect(() => {
+    const getData = async () => {
+      const data = await getWeather(city);
+      console.log(data);
+      setData(data);
+      if (data.main.temp < 21) {
+        setBg(coldbg);
+      } else {
+        setBg(hotbg);
+      }
+    };
+    getData();
+  }, [city]);
 
   return (
-    <div className="App" style={{ backgroundImage: `url(${bg})`}}>
+    <div className="App" style={{ backgroundImage: `url(${bg})` }}>
       <div className="Container">
         <div className="inputData">
-          <input type="text" name="city" placeholder="Search.." onKeyDown={getCity}/>
+          <input
+            type="text"
+            name="city"
+            placeholder="Search.."
+            onKeyDown={getCity}
+          />
         </div>
         {useData && (
           <div className="main">
@@ -68,29 +77,41 @@ function App() {
                 <h1>{`${useData.main.temp} °C`}</h1>
               </div>
             </div>
-            <div className='otherData'>
-              <div className='data'>
-                <h2><MdOutlineInfo style={{fontSize:'25px'}}/> Latitude</h2>
+            <div className="otherData">
+              <div className="data">
+                <h2>
+                  <MdOutlineInfo style={{ fontSize: "25px" }} /> Latitude
+                </h2>
                 <p>{`${useData.coord.lat}`}</p>
               </div>
-              <div className='data'>
-                <h2><MdOutlineInfo style={{fontSize:'25px'}}/> Longitude</h2>
+              <div className="data">
+                <h2>
+                  <MdOutlineInfo style={{ fontSize: "25px" }} /> Longitude
+                </h2>
                 <p>{`${useData.coord.lon}`}</p>
               </div>
-              <div className='data'>
-                <h2><MdArrowCircleUp style={{fontSize:'25px'}}/> Max</h2>
+              <div className="data">
+                <h2>
+                  <MdArrowCircleUp style={{ fontSize: "25px" }} /> Max
+                </h2>
                 <p>{`${useData.main.temp_max}`}</p>
               </div>
-              <div className='data'>
-                <h2><MdArrowCircleDown style={{fontSize:'25px'}}/> min</h2>
+              <div className="data">
+                <h2>
+                  <MdArrowCircleDown style={{ fontSize: "25px" }} /> min
+                </h2>
                 <p>{`${useData.main.temp_min}`}</p>
               </div>
-              <div className='data'>
-                <h2><WiHumidity style={{fontSize:'25px'}}/> Humidity</h2>
+              <div className="data">
+                <h2>
+                  <WiHumidity style={{ fontSize: "25px" }} /> Humidity
+                </h2>
                 <p>{`${useData.main.humidity} %`}</p>
               </div>
-              <div className='data'>
-                <h2><MdCompress style={{fontSize:'25px'}}/> Pressure</h2>
+              <div className="data">
+                <h2>
+                  <MdCompress style={{ fontSize: "25px" }} /> Pressure
+                </h2>
                 <p>{`${useData.main.pressure} hPa`}</p>
               </div>
             </div>
