@@ -44,7 +44,7 @@ function App() {
 
   useEffect(function () {
     fetchData();
-  }, [city]);
+  }, [city,fetchData]);
 
   return (
     <div className="App" style={{ backgroundImage: `url(${bg})`}}>
